@@ -1,0 +1,63 @@
+{% load cms_tags menu_tags sekizai_tags static %}
+<!doctype html>
+<html>
+    <head>
+        <title>{% block title %}This is my new project home page{% endblock title %}</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <style type="text/css">
+            .nav {
+                padding-left: 0;
+            }
+            .nav li {
+                display: inline;
+                list-style-type: none;
+                padding-right: 20px;
+            }
+            .container {
+                width: 940px;
+                margin: 0 auto
+            }
+            .content {
+                float: left;
+                width: 80%;
+            }
+            .sidebar {
+                float: left;
+                width: 20%;
+            }
+        </style>
+        {% render_block "css" %}
+    </head>
+    <body>
+        {% cms_toolbar %}
+
+<html>
+<head>
+    <link href="{% static 'main.css' %}" rel="stylesheet" type="text/css">
+    <title>Maldives</title>
+
+    </head>
+<body>
+    <header>
+    <div class="main">
+        <ul>
+        <li class="active"><a href="">Home</a></li>
+             {% show_menu 0 100 100 100 %}
+        </ul>
+
+
+        </div>
+    <div class="title">
+        <h1>Welcome To Maldives</h1>
+        </div>
+        <div class="button">
+        <a href="https://www.youtube.com/watch?v=bZkLuCgORi4" class="btn">Watch Video</a>
+               <a href="page.html" class="btn">Explore</a>
+        </div>
+    </header>
+
+    </body>
+
+        {% render_block "js" %}
+    </body>
+</html>

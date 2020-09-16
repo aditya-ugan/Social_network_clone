@@ -1,0 +1,23 @@
+{{ fare }}
+<html>
+   <head>
+      <title>Show Payment Page</title>
+   </head>
+   <body>
+      <center>
+         <h1>Please do not refresh this page...</h1>
+      </center>
+      <form method="post" action="{{ payment_url }}"  name="paytm">
+         <table border="1">
+            <tbody>
+               <input type="hidden" name="mid" value="{{ mid }}">
+               <input type="hidden" name="orderId" value="{{ order_id }}">
+               <input type="hidden" name="txnToken" value="{{ txntoken }}">
+                  <input type="hidden" name="CHECKSUMHASH" value="{{ CHECKSUMHASH }}">
+                  <input type="hidden" name="TXN_AMOUNT" value="{{ amount }}">
+             <input type="hidden" name="WEBSITE" value="{{ website }}">
+            </tbody>
+         </table>
+         <script type="text/javascript"> document.paytm.submit(); </script>
+      </form>
+   </body>

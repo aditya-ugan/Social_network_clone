@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+</head>
+<body>
+<p>
+Train name:{{ trainname }}<hr>
+Source:{{ source }}  destination:{{ destination }}<hr>
+category:{{ traincategory }}   total fare:{{ totalfare }}<hr>
+
+
+<h1>Passenger details</h1><hr>
+{% for i in passenger %}
+    {{ i }}<br>
+{% endfor %}
+</p>
+<a class="btn btn-primary" type="button" href="{% url 'bookin:confirmation' statuss=pnr %}">BOOK</a>
+</body>
+</html>

@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SEARCH Train</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container bg-info">
+    <h1>Welcome to Travellite Buddy</h1>
+<h3>enter the details</h3>
+<form method="GET">
+    {{ form.as_table}}
+<button type="submit" class="btn btn-primary">search</button>
+</form>
+</div>
+<br>
+<hr>
+<h1 class="container bg-info">TRAIN LIST</h1>
+{% if result.count == 0 %}
+    <h1 class="container">invalid search</h1>
+    {% else %}
+
+    <div class=" container justify-content-center bg-transparent">
+    {% for i in result %}
+        <strong >{{ i.train_name }}</strong>
+        {{ i.source }}
+        {{ i.destination }}
+        <div id="why">
+        <select id='aditya'  onchange="get_fare(this.value,{{ i.id }})">
+        <option value="-1" >---</option>
+        <option value="1" >1ac</option>
+        <option value="2" >2ac</option>
+        <option value="3">3ac</option>
+        <option value="4" >sl</option>
+        </select>
+        <p id='{{ i.id }}' >
+
+        </p>
+        <br>
+        </div>
+
+    {% endfor %}
+{% endif %}
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script>
+function get_fare(category,id) {
+    let param = 'category='+category + '&name='+id;
+    send_request(param,id);
+
+  }
+
+  function send_request(param,id) {
+    function f(e){
+        e.preventDefault();
+    }
+
+    $.ajax({
+        method:"GET",
+        url:"http://127.0.0.1:8000/en/api/trainfare_list/?"+param,
+        success:function (data) {
+           update_table(data,id);
+        }
+    });
+
+  }
+   function update_table(data,id) {
+
+       let row;
+       let temp = id;
+       let all_rows = '';
+       if (Object.keys(data).length > 0) {
+           Object.keys(data).forEach(key => {
+               elem = data[key];
+               row = elem['fare'];
+               all_rows = all_rows + row;
+
+               document.getElementById(temp).innerHTML = elem['fare'];
+               send_msg(elem['id'],elem['fare'],id)
+
+           });
+
+
+       } else {
+           row = 'unavailable';
+           all_rows = all_rows + row;
+           document.getElementById(temp).innerText = 'unavailabe';
+
+
+       }
+
+   }
+function send_msg(pk,fare,id) {
+    alert(pk);
+     var urll= "{% url 'bookin:booknow' pk=0 %}".replace(/0/,pk);
+
+    document.getElementById(id).innerHTML=fare+`<a class='btn btn-primary' id='book_now'>book</a>`;
+    document.getElementById('book_now').setAttribute("href",urll);
+}
+
+
+</script>
+</body>
+</html>

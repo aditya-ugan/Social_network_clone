@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+</head>
+<body>
+{{ requst.user }}
+<form method="GET">
+    {{ form.as_table }}
+<button type="submit" class="btn btn-primary">search</button>
+</form>
+{% if result.count == 0 %}
+    <h1>invalid search</h1>
+    {% else %}
+    {% for i in result %}
+        <strong>{{ i.flight_name }}</strong>
+        {{ i.source }}
+        {{ i.destination }}
+    {% endfor %}
+{% endif %}
+</body>
+</html>

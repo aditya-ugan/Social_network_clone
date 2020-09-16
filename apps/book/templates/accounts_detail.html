@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Accounts</title>
+</head>
+<body>
+<h1>welcome to transaction History</h1>
+{% for his in history %}
+    {{ his.totalfare }}<br>
+    {{ his.pnr_no }}
+{% endfor %}
+</body>
+</html>
