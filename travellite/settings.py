@@ -226,11 +226,11 @@ CMS_PLACEHOLDER_CONF = {}
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST': 'localhost',
-        'NAME': 'adityadata',
-        'PASSWORD': 'Adi@pos',
+        'HOST': '',
+        'NAME': '',
+        'PASSWORD': '',
         'PORT': '5432',
-        'USER': 'postgres'
+        'USER': ''
     }
 }
 
@@ -243,8 +243,8 @@ THUMBNAIL_PROCESSORS = (
 PAYTM_COMPANY_NAME = "TRAVELLITE"
 PAYTM_INDUSTRY_TYPE_ID = "Retail"
 PAYTM_CHANNEL_ID = "WEB"
-PAYTM_MERCHANT_KEY = "eA%7XAkY@2LO52um"
-PAYTM_MERCHANT_ID = "ifSVgJ17370522210206"
+PAYTM_MERCHANT_KEY = ""
+PAYTM_MERCHANT_ID = ""
 PAYTM_CALLBACK_URL = "http://127.0.0.1:8000/en/trial/paytmresponse/"
 PAYTM_WEBSITE = "WEBSTAGING"
 PAYTM_PAYMENT_GATEWAY_URL = "https://securegw-stage.paytm.in/order/process"
